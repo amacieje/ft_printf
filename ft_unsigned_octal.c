@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signed_decimal.c                                :+:      :+:    :+:   */
+/*   ft_unsigned_octal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/27 12:42:50 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/08 11:07:52 by amacieje         ###   ########.fr       */
+/*   Created: 2017/03/08 11:18:49 by amacieje          #+#    #+#             */
+/*   Updated: 2017/03/08 15:18:28 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int						ft_signed_decimal(long int li, const char *format,
+int						ft_unsigned_octal(long int li, const char *format,
 		int i, int j)
 {
 	t_flags				*flags;
@@ -23,7 +23,7 @@ int						ft_signed_decimal(long int li, const char *format,
 
 	flags = NULL;
 	wholespec = NULL;
-	if ((flags = ft_flags_struct(format, &i, j)) == NULL)
+	if ((flags = ft_flags_struct_uo(format, &i, j)) == NULL)
 		exit(-1);
 	if ((width = ft_width(format, &i)) < 0)
 		exit(-1);
@@ -31,7 +31,7 @@ int						ft_signed_decimal(long int li, const char *format,
 		exit(-1);
 	if ((wholespec = ft_whole_spec_struct(width, precision, i, j)) == NULL)
 		exit(-1);
-	if ((printed = ft_cast_sd(li, flags, wholespec, format)) < 0)
+	if ((printed = ft_cast_uo(li, flags, wholespec, format)) < 0)
 		exit(-1);
 	free(flags);
 	free(wholespec);

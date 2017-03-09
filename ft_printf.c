@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 12:44:50 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/03 15:04:55 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/03/08 15:26:27 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 static void	ft_parse(va_list *ap, const char *format, int *i, int *printed)
 {
 	int		j;
-	
+
 	j = *i;
-//	while (ft_strchr("sSpdDioOuUxXcC%", format[++j]) == NULL)
 	while (format[++j])
 		if ((ft_strchr("#0 +-lhjz123456789.*", format[j])) == NULL)
-			break;
+			break ;
 	if (format[j] == 'd' || format[j] == 'i' || format[j] == 'D')
 		*printed = *printed + ft_signed_decimal(va_arg(*ap, long int), format, *i, j);
+//	if (format[j] == 'o' || format[j] == 'O')
+//		*printed = *printed + ft_unsigned_octal(va_arg(*ap, long int), format, *i, j);
 	else
 	{
 		write(1, &format[j], 1);
@@ -52,19 +53,9 @@ int			ft_printf(const char *restrict format, ...)
 	return (printed);
 }
 
-int		main()
+int			main()
 {
-//	printf("%d\n", ft_printf("%%Bla%2d\n", "Shh", "Psst"));
-//	printf("%d\n", printf("%%Bla%2d\n", 89));
-//	printf("%d\n", ft_printf("❤ ☀ ☆ \n"));
-//	printf("%d\n", printf("❤ ☀ ☆ \n"));
-//	printf("%d\n", ft_printf("Mon printf : %   l%"));
-//	printf("%d\n", printf("Lautprintf : %   l%"));
-//	ft_printf("%d\n", 214748364780);
-//	printf("%d\n", 214748364780);
-//	ft_printf("%6.4d\n", 156);
-//	printf("%6.4d\n", 156);
-	ft_printf("%-.5d\n", -156);
-	printf("%-.5d\n", -156);
+	ft_printf("%-5.3d\n", -1);
+	printf("%-5.3d\n", -1);
 	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cast_sd.c                                       :+:      :+:    :+:   */
+/*   ft_cast_uo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 14:46:39 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/08 15:17:49 by amacieje         ###   ########.fr       */
+/*   Created: 2017/03/08 14:07:40 by amacieje          #+#    #+#             */
+/*   Updated: 2017/03/08 15:57:57 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_printed(long int li, int printed, t_flags *flags,
 	return (printed);
 }
 
-int			ft_cast_sd(long int li, t_flags *flags,
+int			ft_cast_uo(long int li, t_flags *flags,
 		t_whole_specifier *wholespec, const char *format)
 {
 	char	*output;
@@ -49,7 +49,7 @@ int			ft_cast_sd(long int li, t_flags *flags,
 	int		i;
 
 	i = wholespec->i;
-	if (format[wholespec->j] == 'D' && i != wholespec->j)
+	if (format[wholespec->j] == 'D' && i  != wholespec->j)
 		return (0);
 	if (format[wholespec->j] == 'D' || format[i] == 'z')
 		li = (size_t)li;
