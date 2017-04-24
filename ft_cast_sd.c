@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:46:39 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/08 15:17:49 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/03/29 12:38:36 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_printed(long int li, int printed, t_flags *flags,
 	return (printed);
 }
 
-int			ft_cast_sd(long int li, t_flags *flags,
+int			ft_cast_sd(intmax_t li, t_flags *flags,
 		t_whole_specifier *wholespec, const char *format)
 {
 	char	*output;
@@ -57,8 +57,8 @@ int			ft_cast_sd(long int li, t_flags *flags,
 		li = (signed char)li;
 	else if (format[i] == 'h' && format[i + 1] != 'h')
 		li = (short int)li;
-	else if (format[i] == 'j')
-		li = (intmax_t)li;
+	else if (format[i] == 'l')
+		li = (long long int)li;
 	else if (ft_strchr("hljz", format[i]) == NULL)
 		li = (int)li;
 	printed = ft_printed(li, 0, flags, wholespec);

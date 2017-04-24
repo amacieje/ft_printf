@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cast_uo.c                                       :+:      :+:    :+:   */
+/*   ft_cast_uh.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 14:07:40 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/31 13:00:06 by amacieje         ###   ########.fr       */
+/*   Created: 2017/03/21 11:27:42 by amacieje          #+#    #+#             */
+/*   Updated: 2017/03/31 17:27:51 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 static int	ft_max_lenght(int lilenght, int width, int precision)
 {
@@ -28,15 +29,39 @@ static int	ft_max_lenght(int lilenght, int width, int precision)
 static int	ft_printed(char *li, int printed, t_flags *flags,
 		t_whole_specifier *wholespec)
 {
-	printed = ft_max_lenght(ft_strlen(li), wholespec->width,
-			wholespec->precision);
-	if ((wholespec->precision >= wholespec->width &&
-	wholespec->precision >= (int)ft_strlen(li)) && flags->sharp == 1)
+	int		lilenght;
+
+	lilenght = (int)ft_strlen(li);
+	if (li[0] == '0' && lilenght == 1)
+		return (1);
+	printed = ft_max_lenght(lilenght, wholespec->width,
+		wholespec->precision);
+	if (flags->sharp != 0 && wholespec->precision > lilenght + 1
+		&& printed < lilenght + 2)
 		printed++;
+	if (flags->sharp != 0 && wholespec->width <= wholespec->precision &&
+		wholespec->precision > lilenght)
+		printed++;
+	if (flags->sharp != 0 && (printed == lilenght))
+		printed = printed + 2;
 	return (printed);
 }
 
-int			ft_cast_uo(uintmax_t li, t_flags *flags,
+static char *ft_hexa_shift(char *li, const char *format, int j)
+{
+	int		i;
+
+	i = 0;
+	if (format[j] == 'X' && li[i] != '0')
+		while (li[i])
+		{
+			li[i] = ft_toupper(li[i]);
+			i++;
+		}
+	return (li);
+}
+
+int			ft_cast_uh(uintmax_t li, t_flags *flags,
 		t_whole_specifier *wholespec, const char *format)
 {
 	char	*output;
@@ -44,10 +69,8 @@ int			ft_cast_uo(uintmax_t li, t_flags *flags,
 	int		i;
 
 	i = wholespec->i;
-	if (format[wholespec->j] == 'O' && i != wholespec->j)
-		return (0);
-	if (format[wholespec->j] == 'O' || format[i] == 'l')
-		li = (unsigned long int)li;
+	if (format[i] == 'l' && format[i + 1] == 'l')
+		li = (unsigned long long int)li;
 	else if (format[i] == 'h' && format[i + 1] == 'h')
 		li = (unsigned char)li;
 	else if (format[i] == 'h' && format[i + 1] != 'h')
@@ -55,13 +78,15 @@ int			ft_cast_uo(uintmax_t li, t_flags *flags,
 	else if (format[i] == 'z')
 		li = (size_t)li;
 	else if (ft_strchr("hljz", format[i]) == NULL)
-		li = (int)li;
-	printed = ft_printed(ft_uitoa_base(li, 8), 0, flags, wholespec);
+		li = (unsigned int)li;
+	printed = ft_printed(ft_uitoa_base(li, 16), 0, flags, wholespec);
 	if (!(output = ft_memalloc(sizeof(char) * printed + 1)))
 		return (-1);
 	ft_memset(output, '0', printed);
 	output[printed] = '\0';
+	i = wholespec->j;
 	wholespec->j = printed;
-	ft_fill_and_display_uo(output, ft_uitoa_base(li, 8), flags, wholespec);
+	ft_fill_and_display_uh(output, ft_hexa_shift(ft_uitoa_base(li, 16),
+		format, i), flags, wholespec);
 	return (printed);
 }

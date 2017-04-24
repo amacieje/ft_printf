@@ -6,13 +6,13 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 12:42:50 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/08 11:07:52 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/03/29 12:15:14 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int						ft_signed_decimal(long int li, const char *format,
+int						ft_signed_decimal(intmax_t li, const char *format,
 		int i, int j)
 {
 	t_flags				*flags;
