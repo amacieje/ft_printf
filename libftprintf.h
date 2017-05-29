@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:07:26 by amacieje          #+#    #+#             */
-/*   Updated: 2017/04/21 11:14:35 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/29 14:13:48 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct		s_mask
 }					t_mask;
 
 int					ft_printf(const char *restrict format, ...);
-char    	        *ft_uitoa_base(unsigned long long int decimal, int base);
+char				*ft_uitoa_base(unsigned long long int decimal, int base);
 t_flags				*ft_flags_struct(const char *format, int *i, int j);
 t_flags				*ft_flags_struct_uo_uh(const char *format,
 		int *i, int j);
@@ -90,7 +90,7 @@ void				ft_fill_and_display_uo(char *output, char *li,
 void				ft_fill_and_display_uh(char *output, char *li,
 		t_flags *flags, t_whole_specifier *wholespec);
 void				ft_fill_and_display_ud(char *output, char *li,
-		t_flags *flags,	t_whole_specifier *wholespec);
+		t_flags *flags, t_whole_specifier *wholespec);
 void				ft_display_c(int c, t_flags *flags, int printed);
 
 #endif
