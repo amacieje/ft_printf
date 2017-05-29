@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 14:41:47 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/03 15:10:27 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/09 14:38:07 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			ft_precision(const char *format, int *i)
 	if (format[*i] != '.')
 		return (0);
 	*i = *i + 1;
+	if (!(ft_strchr("123456789", format[*i])))
+		return (-3);
 	start = *i;
 	while (ft_isdigit(format[*i]))
 		*i = *i + 1;
@@ -32,5 +34,7 @@ int			ft_precision(const char *format, int *i)
 	precision[k] = '\0';
 	while (end >= start)
 		precision[k--] = format[end--];
-	return (ft_atoi(precision));
+	k = ft_atoi(precision);
+	free(precision);
+	return (k);
 }

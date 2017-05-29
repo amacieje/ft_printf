@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 14:07:40 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/31 13:00:06 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/29 12:03:05 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,13 @@ static int	ft_printed(char *li, int printed, t_flags *flags,
 	printed = ft_max_lenght(ft_strlen(li), wholespec->width,
 			wholespec->precision);
 	if ((wholespec->precision >= wholespec->width &&
-	wholespec->precision >= (int)ft_strlen(li)) && flags->sharp == 1)
+	wholespec->precision - printed > (int)ft_strlen(li)) && flags->sharp == 1)
 		printed++;
+	else if (flags->sharp == 1 && printed <= (int)ft_strlen(li)
+		&& li[0] != '0')
+		printed++;
+	if (*li != '0')
+		free(li);
 	return (printed);
 }
 
@@ -44,8 +49,6 @@ int			ft_cast_uo(uintmax_t li, t_flags *flags,
 	int		i;
 
 	i = wholespec->i;
-	if (format[wholespec->j] == 'O' && i != wholespec->j)
-		return (0);
 	if (format[wholespec->j] == 'O' || format[i] == 'l')
 		li = (unsigned long int)li;
 	else if (format[i] == 'h' && format[i + 1] == 'h')
@@ -55,7 +58,7 @@ int			ft_cast_uo(uintmax_t li, t_flags *flags,
 	else if (format[i] == 'z')
 		li = (size_t)li;
 	else if (ft_strchr("hljz", format[i]) == NULL)
-		li = (int)li;
+		li = (unsigned int)li;
 	printed = ft_printed(ft_uitoa_base(li, 8), 0, flags, wholespec);
 	if (!(output = ft_memalloc(sizeof(char) * printed + 1)))
 		return (-1);

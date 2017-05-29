@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:48:18 by amacieje          #+#    #+#             */
-/*   Updated: 2017/04/14 11:08:03 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/26 12:32:05 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int						ft_unsigned_char(unsigned int c, const char *format,
 		exit(-1);
 	if ((width = ft_width(format, &i)) < 0)
 		exit(-1);
-	if ((precision = ft_precision(format, &i)) < 0)
+	if ((precision = ft_precision(format, &i)) < 0 && precision != -3)
 		exit(-1);
 	if ((wholespec = ft_whole_spec_struct(width, 0, i, j)) == NULL)
 		exit(-1);
 	if ((printed = ft_cast_uc(c, flags, wholespec, format)) < 0)
-		return (-1);
+		printed = -1;
 	free(flags);
 	free(wholespec);
 	return (printed);

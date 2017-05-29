@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 11:27:42 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/31 17:27:51 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/10 11:20:11 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,32 @@ static int	ft_printed(char *li, int printed, t_flags *flags,
 		t_whole_specifier *wholespec)
 {
 	int		lilenght;
+	int		cpy;
 
 	lilenght = (int)ft_strlen(li);
-	if (li[0] == '0' && lilenght == 1)
-		return (1);
 	printed = ft_max_lenght(lilenght, wholespec->width,
 		wholespec->precision);
-	if (flags->sharp != 0 && wholespec->precision > lilenght + 1
-		&& printed < lilenght + 2)
-		printed++;
-	if (flags->sharp != 0 && wholespec->width <= wholespec->precision &&
-		wholespec->precision > lilenght)
-		printed++;
-	if (flags->sharp != 0 && (printed == lilenght))
-		printed = printed + 2;
+	cpy = printed;
+	if (flags->sharp != 0 && li[0] != '0')
+	{
+		if (cpy < lilenght + 2)
+			printed++;
+		if (wholespec->precision != -3 && cpy <= wholespec->precision + 1)
+			printed++;
+		if (wholespec->width <= wholespec->precision
+				&& wholespec->precision > lilenght + 1)
+			printed++;
+		if (wholespec->precision == -3 && wholespec->width <= lilenght)
+			printed++;
+		if (printed < lilenght + 2)
+			printed++;
+	}
+	if (*li != '0')
+		free(li);
 	return (printed);
 }
 
-static char *ft_hexa_shift(char *li, const char *format, int j)
+static char	*ft_hexa_shift(char *li, const char *format, int j)
 {
 	int		i;
 

@@ -6,7 +6,7 @@
 #    By: amacieje <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 15:13:06 by amacieje          #+#    #+#              #
-#    Updated: 2017/04/21 11:13:20 by amacieje         ###   ########.fr        #
+#    Updated: 2017/05/05 14:05:16 by amacieje         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,19 +19,23 @@ SRC2 = ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap
 DSRC = libft/
 SRCLIB = $(addprefix $(DSRC), $(SRC2))
 PTSO = $(SRC:%.c=%.o)
-PTSO2 = $(SRC2:%.c=%.o)
+PTS02 = $(SRC2:%.c=%.o)
+PTS03 = $(addprefix $(DSRC), $(PTS02))
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) -c $? $(SRCLIB) -I $(DSRC)
-	$(ARRC) $(NAME) $(PTSO) $(PTSO2)
+	make -C libft/
+	$(CC) $(CFLAGS) -c $? -I $(DSRC)
+	$(ARRC) $(NAME) $(PTSO) $(PTS03)
 	ranlib $(NAME)
 
 clean:
-	rm -f $(PTSO) $(PTSO2)
+	make -C libft/ clean
+	rm -f $(PTSO) $(PTS02)
 
 fclean: clean
+	make -C libft/ fclean
 	rm -f $(NAME)
 
 re: fclean all

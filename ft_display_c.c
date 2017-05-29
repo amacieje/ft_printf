@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 13:36:44 by amacieje          #+#    #+#             */
-/*   Updated: 2017/04/13 13:37:25 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/05 11:19:31 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ void		ft_display_c(int c, t_flags *flags, int printed)
 		write(1, 0, 1);
 	}
 }
-

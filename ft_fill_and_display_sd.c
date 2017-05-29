@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:53:59 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/09 11:06:41 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/29 13:35:46 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,4 @@ void		ft_fill_and_display_sd(char *output, char *li, t_flags *flags,
 			output[0] = ' ';
 	}
 	ft_putstr(output);
-	free(output);
 }

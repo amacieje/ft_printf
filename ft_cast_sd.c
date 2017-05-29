@@ -6,22 +6,36 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:46:39 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/29 12:38:36 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/29 12:04:00 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+static void	ft_check_zero(char *output, char *li, t_flags *flags,
+		t_whole_specifier *wholespec)
+{
+	if (wholespec->precision == -3 && li[0] == '0')
+		ft_fill_and_display_sd(output, "", flags, wholespec);
+	else
+		ft_fill_and_display_sd(output, li, flags, wholespec);
+	free(output);
+	free(li);
+}
+
 static int	ft_max_lenght(long int li, int width, int precision)
 {
 	int		max;
 	int		lilenght;
+	char	*str;
 
 	if (width >= precision)
 		max = width;
 	else
 		max = precision;
-	lilenght = ft_strlen(ft_longitoa(li));
+	str = ft_longitoa(li);
+	lilenght = ft_strlen(str);
+	free(str);
 	if (lilenght >= max)
 		return (lilenght);
 	return (max);
@@ -38,6 +52,8 @@ static int	ft_printed(long int li, int printed, t_flags *flags,
 	(flags->plus == 1 || flags->space == 1)
 	&& printed == (int)ft_strlen(ft_longitoa(li))))
 		printed++;
+	if (wholespec->precision == -3 && li == 0 && wholespec->width < 2)
+		printed--;
 	return (printed);
 }
 
@@ -49,8 +65,6 @@ int			ft_cast_sd(intmax_t li, t_flags *flags,
 	int		i;
 
 	i = wholespec->i;
-	if (format[wholespec->j] == 'D' && i != wholespec->j)
-		return (0);
 	if (format[wholespec->j] == 'D' || format[i] == 'z')
 		li = (size_t)li;
 	else if (format[i] == 'h' && format[i + 1] == 'h')
@@ -67,6 +81,6 @@ int			ft_cast_sd(intmax_t li, t_flags *flags,
 	ft_memset(output, '0', printed);
 	output[printed] = '\0';
 	wholespec->j = printed;
-	ft_fill_and_display_sd(output, ft_longitoa(li), flags, wholespec);
+	ft_check_zero(output, ft_longitoa(li), flags, wholespec);
 	return (printed);
 }

@@ -6,16 +6,16 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 11:45:43 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/31 13:00:09 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/09 13:51:14 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static unsigned long long int      ft_divide(unsigned long long int decimal,
+static unsigned long long	ft_divide(unsigned long long int decimal,
 		int base)
 {
-	unsigned long long int nb;
+	unsigned long long		nb;
 
 	nb = 0;
 	while (decimal != 0)
@@ -26,12 +26,13 @@ static unsigned long long int      ft_divide(unsigned long long int decimal,
 	return (nb);
 }
 
-char            *ft_uitoa_base(unsigned long long int decimal, int base)
+char						*ft_uitoa_base(unsigned long long decimal,
+		int base)
 {
-	char *output;
-	unsigned long long int nb;
-	int i;
-	char tab[17];
+	char					*output;
+	unsigned long long		nb;
+	int						i;
+	char					tab[17];
 
 	if (base > 36 || base < 2)
 		return (NULL);
@@ -41,7 +42,8 @@ char            *ft_uitoa_base(unsigned long long int decimal, int base)
 		return (ft_ullitoa(decimal));
 	ft_strcpy(tab, "0123456789abcdef");
 	nb = ft_divide(decimal, base);
-	output = (char *)malloc(sizeof(char) * (nb + 1));
+	if (!(output = (char *)malloc(sizeof(char) * (nb + 1))))
+		return (NULL);
 	i = 1;
 	while (decimal != 0)
 	{
@@ -51,13 +53,3 @@ char            *ft_uitoa_base(unsigned long long int decimal, int base)
 	output[nb] = '\0';
 	return (output);
 }
-
-/*int		main()
-{
-	printf("%d\n", (unsigned char)922337203);
-	printf("%x\n", (unsigned char)922337203);
-	ft_putstr(ft_itoa_base((unsigned char)922337203, 10));
-	return (0);
-}*/
-
-// free output

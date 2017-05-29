@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 11:43:52 by amacieje          #+#    #+#             */
-/*   Updated: 2017/03/31 17:10:39 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/10 11:17:47 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*ft_left_align(char *output, char *li, t_flags *flags,
 	i = 0;
 	j = 0;
 	k = 0;
-	if (flags->sharp != 0)
+	if (flags->sharp != 0 && li[0] != '0')
 	{
 		output[i++] = '0';
 		output[i++] = (flags->sharp == 2) ? 'X' : 'x';
@@ -54,7 +54,7 @@ static char	*ft_right_align(char *output, char *li, t_flags *flags,
 		output[i--] = li[k--];
 	while (i >= wholespec->j - wholespec->precision)
 		i--;
-	if (flags->sharp != 0 && flags->zero == 0)
+	if (flags->sharp != 0 && flags->zero == 0 && li[0] != '0')
 	{
 		output[i--] = (flags->sharp == 2) ? 'X' : 'x';
 		output[i--] = '0';
@@ -73,17 +73,14 @@ static char	*ft_right_align(char *output, char *li, t_flags *flags,
 void		ft_fill_and_display_uh(char *output, char *li, t_flags *flags,
 		t_whole_specifier *wholespec)
 {
-	if (li[0] == '0')
-		ft_putstr(li);
+	if (wholespec->precision > 0)
+		flags->zero = 0;
+	if (flags->minus == 1)
+		output = ft_left_align(output, li, flags, wholespec);
 	else
-	{
-		if (wholespec->precision > 0)
-			flags->zero = 0;
-		if (flags->minus == 1)
-			output = ft_left_align(output, li, flags, wholespec);
-		else
-			output = ft_right_align(output, li, flags, wholespec);
-		ft_putstr(output);
-	}
+		output = ft_right_align(output, li, flags, wholespec);
+	ft_putstr(output);
 	free(output);
+	if (*li != '0')
+		free(li);
 }
