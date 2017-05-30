@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:53:58 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/05 11:20:23 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/30 11:12:21 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void		ft_two_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
 		write(1, &mask->second, 1);
 		write(1, 0, 1);
 	}
+	free(mask);
 }
 
 static void		ft_three_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
@@ -59,6 +60,7 @@ static void		ft_three_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
 		write(1, &mask->third, 1);
 		write(1, 0, 1);
 	}
+	free(mask);
 }
 
 static void		ft_four_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
@@ -88,15 +90,18 @@ static void		ft_four_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
 		write(1, &mask->fourth, 1);
 		write(1, 0, 1);
 	}
+	free(mask);
 }
 
 static void		ft_display_lc(unsigned int c, t_flags *flags,
 		t_whole_specifier *wholespec, int *printed)
 {
+	char		*binary;
 	size_t		lenght;
 	t_mask		*mask;
 
-	lenght = ft_strlen(ft_uitoa_base(c, 2));
+	binary = ft_uitoa_base(c, 2);
+	lenght = ft_strlen(binary);
 	if (!(mask = ft_memalloc(sizeof(t_mask))))
 		exit(-1);
 	mask->printed = *printed;

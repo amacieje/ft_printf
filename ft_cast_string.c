@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 12:29:04 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/29 13:33:50 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/30 12:09:19 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,6 @@ static void		ft_display_wchar_t(wchar_t *str, int strlenght,
 		while (i++ < *printed - strlenght)
 			write(1, " ", 1);
 	}
-}
-
-static void		ft_display_char(const char *str, char *output,
-		t_whole_specifier *wholespec, int minus)
-{
-	int			i;
-	int			k;
-	int			diff;
-	int			min;
-
-	diff = (int)ft_strlen(output) - (int)ft_strlen(str);
-	i = -1;
-	k = 0;
-	min = wholespec->precision >= (int)ft_strlen(str) ? (int)ft_strlen(str)
-		: wholespec->precision;
-	if (minus == 0 && wholespec->precision == 0)
-		while (output[++i])
-			output[i] = (i < diff) ? ' ' : str[k++];
-	else if (minus == 0)
-		while (output[++i])
-			output[i] = i < ((int)ft_strlen(output) - min) ? ' ' : str[k++];
-	else if (minus == 1)
-	{
-		while (str[++i] && i < (int)ft_strlen(output))
-			output[i] = str[i];
-		i = wholespec->precision > 0 ? wholespec->precision : i;
-		while (output[i] && i < (int)ft_strlen(output))
-			output[i++] = ' ';
-	}
-	ft_putstr(output);
 }
 
 static int		ft_max_lenght(const char *str, int strlenght,
@@ -94,6 +64,24 @@ static int		ft_max_lenght(const char *str, int strlenght,
 	return (max);
 }
 
+static void		ft_wildstr_lenght(wchar_t *wildstr, size_t *strlenght, int i)
+{
+	char		*wildindex;
+	int			len;
+
+	wildindex = ft_uitoa_base((unsigned int)wildstr[i], 2);
+	len = ft_strlen(wildindex);
+	if (len < 8)
+		*strlenght = *strlenght + 1;
+	else if (len < 12)
+		*strlenght = *strlenght + 2;
+	else if (len < 17)
+		*strlenght = *strlenght + 3;
+	else
+		*strlenght = *strlenght + 4;
+	free(wildindex);
+}
+
 static size_t	ft_strlenght(const char *str, t_whole_specifier *wholespec,
 		const char *format)
 {
@@ -107,16 +95,7 @@ static size_t	ft_strlenght(const char *str, t_whole_specifier *wholespec,
 		wildstr = (wchar_t *)str;
 		i = -1;
 		while (wildstr[++i])
-		{
-			if (ft_strlen(ft_uitoa_base((unsigned int)wildstr[i], 2)) < 8)
-				strlenght++;
-			else if (ft_strlen(ft_uitoa_base((unsigned int)wildstr[i], 2)) < 12)
-				strlenght = strlenght + 2;
-			else if (ft_strlen(ft_uitoa_base((unsigned int)wildstr[i], 2)) < 17)
-				strlenght = strlenght + 3;
-			else
-				strlenght = strlenght + 4;
-		}
+			ft_wildstr_lenght(wildstr, &strlenght, i);
 		return (strlenght);
 	}
 	while (str[strlenght])
