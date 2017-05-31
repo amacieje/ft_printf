@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 14:41:47 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/09 14:38:07 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 13:41:31 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int			ft_precision(const char *format, int *i)
 	while (end >= start)
 		precision[k--] = format[end--];
 	k = ft_atoi(precision);
-	free(precision);
+//	free(precision);
 	return (k);
 }

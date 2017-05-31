@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 17:16:59 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/10 11:25:10 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 13:42:46 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		ft_fill_and_display_uo(char *output, char *li, t_flags *flags,
 	else
 		output = ft_right_align(output, li, flags, wholespec);
 	ft_putstr(output);
-	free(output);
-	if (*li != '0')
-		free(li);
+//	free(output);
+//	if (*li != '0')
+//		free(li);
 }

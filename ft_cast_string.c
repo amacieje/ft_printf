@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 12:29:04 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/30 12:09:19 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 13:43:38 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void		ft_wildstr_lenght(wchar_t *wildstr, size_t *strlenght, int i)
 		*strlenght = *strlenght + 3;
 	else
 		*strlenght = *strlenght + 4;
-	free(wildindex);
+//	free(wildindex);
 }
 
 static size_t	ft_strlenght(const char *str, t_whole_specifier *wholespec,
@@ -129,6 +129,6 @@ int				ft_cast_string(const char *str, t_flags *flags,
 		ft_display_wchar_t((wchar_t *)str, strlenght, &printed, minus);
 	else
 		ft_display_char(str, output, wholespec, minus);
-	free(output);
+//	free(output);
 	return (printed);
 }

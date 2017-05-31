@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 11:29:48 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/10 11:35:22 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 13:44:09 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_max_lenght(char *li, t_whole_specifier *wholespec)
 	int		lilenght;
 
 	lilenght = ft_strlen(li);
-	free(li);
+//	free(li);
 	if (wholespec->width >= wholespec->precision)
 		max = wholespec->width;
 	else
