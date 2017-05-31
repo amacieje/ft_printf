@@ -6,13 +6,13 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 12:44:50 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 14:11:20 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:12:24 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-/*static int	ft_no_conv_format(const char *s, int j, int k)
+static int	ft_no_conv_format(const char *s, int j, int k)
 {
 	int		i;
 	int		l;
@@ -37,7 +37,7 @@
 	newformat = ft_strjoin(width, "c");
 //	free(width);
 	return (ft_printf(newformat, s[k + 1]));
-}*/
+}
 
 static void	ft_parse(va_list *ap, const char *format, int *i, int *p)
 {
@@ -60,8 +60,8 @@ static void	ft_parse(va_list *ap, const char *format, int *i, int *p)
 		*p = *p + ft_string(va_arg(*ap, const char *), format, *i, j);
 	else if (format[j] == 'c' || format[j] == 'C')
 		*p = *p + ft_unsigned_char(va_arg(*ap, unsigned int), format, *i, j);
-//	else
-//		*p = *p + ft_no_conv_format(format, j - 1, j - 1);
+	else
+		*p = *p + ft_no_conv_format(format, j - 1, j - 1);
 	*i = j;
 }
 
