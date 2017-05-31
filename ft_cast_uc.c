@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:53:58 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/30 11:12:21 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 10:08:59 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void		ft_two_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
 		write(1, &mask->second, 1);
 		write(1, 0, 1);
 	}
-	free(mask);
 }
 
 static void		ft_three_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
@@ -60,7 +59,6 @@ static void		ft_three_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
 		write(1, &mask->third, 1);
 		write(1, 0, 1);
 	}
-	free(mask);
 }
 
 static void		ft_four_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
@@ -90,7 +88,6 @@ static void		ft_four_bytes_lc(t_mask *mask, t_flags *flags, unsigned int c,
 		write(1, &mask->fourth, 1);
 		write(1, 0, 1);
 	}
-	free(mask);
 }
 
 static void		ft_display_lc(unsigned int c, t_flags *flags,
