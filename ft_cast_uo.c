@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 14:07:40 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 13:44:43 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:31:19 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	ft_printed(char *li, int printed, t_flags *flags,
 	else if (flags->sharp == 1 && printed <= (int)ft_strlen(li)
 		&& li[0] != '0')
 		printed++;
-//	if (*li != '0')
-//		free(li);
+	if (*li != '0')
+		free(li);
 	return (printed);
 }
 
