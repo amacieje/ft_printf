@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 12:44:50 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 14:12:24 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:30:08 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_no_conv_format(const char *s, int j, int k)
 	while (++i <= l)
 		width[i] = s[j++];
 	newformat = ft_strjoin(width, "c");
-//	free(width);
+	free(width);
 	return (ft_printf(newformat, s[k + 1]));
 }
 
