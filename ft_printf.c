@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 12:44:50 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 14:30:08 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:52:23 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	ft_parse(va_list *ap, const char *format, int *i, int *p)
 			break ;
 	if (format[j] == 'd' || format[j] == 'i' || format[j] == 'D')
 		*p = *p + ft_signed_decimal(va_arg(*ap, intmax_t), format, *i, j);
-	else if (format[j] == 'o' || format[j] == 'O')
-		*p = *p + ft_unsigned_octal(va_arg(*ap, uintmax_t), format, *i, j);
+//	else if (format[j] == 'o' || format[j] == 'O')
+//		*p = *p + ft_unsigned_octal(va_arg(*ap, uintmax_t), format, *i, j);
 	else if (format[j] == 'x' || format[j] == 'X' || format[j] == 'p')
 		*p = *p + ft_unsigned_hexa(va_arg(*ap, unsigned long long),
 				format, *i, j);
