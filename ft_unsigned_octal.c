@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:18:49 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/10 13:23:29 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 13:07:28 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int				ft_precision_zero(int width, t_flags *flags,
 	}
 	if (flags->sharp > 0)
 	{
-		free(flags);
 		write(1, "0", 1);
 		return (printed + 1);
 	}
