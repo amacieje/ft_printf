@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:46:39 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 13:41:07 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 16:32:54 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	ft_check_zero(char *output, char *li, t_flags *flags,
 		ft_fill_and_display_sd(output, "", flags, wholespec);
 	else
 		ft_fill_and_display_sd(output, li, flags, wholespec);
-//	free(output);
-//	free(li);
+	free(output);
+	free(li);
 }
 
 static int	ft_max_lenght(long int li, int width, int precision)
@@ -35,7 +35,7 @@ static int	ft_max_lenght(long int li, int width, int precision)
 		max = precision;
 	str = ft_longitoa(li);
 	lilenght = ft_strlen(str);
-//	free(str);
+	free(str);
 	if (lilenght >= max)
 		return (lilenght);
 	return (max);
