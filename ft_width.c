@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:35:09 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 13:49:28 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 16:38:00 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int			ft_width(const char *format, int *i)
 	while (end >= start)
 		width[k--] = format[end--];
 	k = ft_atoi(width);
-//	free(width);
+	free(width);
 	return (k);
 }
