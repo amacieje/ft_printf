@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 11:25:25 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/30 11:48:25 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 13:36:51 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char				*ft_newformat(int *k, char *width)
 	newformat[++j] = 's';
 	while (width > 0 && --j > 0 && width[--i])
 		newformat[j] = width[i];
-	free(width);
+//	free(width);
 	*k = j;
 	return (newformat);
 }
@@ -47,12 +47,12 @@ static int				ft_print_pointer(unsigned long long li,
 	str = ft_uitoa_base(li, 16);
 	width = ft_strjoin("0x", str);
 	k = ft_printf(newformat, width);
-	free(newformat);
-	if (*str != '0')
-		free(str);
-	free(width);
-	free(wholespec);
-	free(flags);
+//	free(newformat);
+//	if (*str != '0')
+//		free(str);
+//	free(width);
+//	free(wholespec);
+//	free(flags);
 	return (k);
 }
 
@@ -100,7 +100,7 @@ int						ft_unsigned_hexa(unsigned long long li,
 		return (ft_print_pointer(li, wholespec, flags));
 	if ((printed = ft_cast_uh((uintmax_t)li, flags, wholespec, format)) < 0)
 		exit(-1);
-	free(flags);
-	free(wholespec);
+//	free(flags);
+//	free(wholespec);
 	return (printed);
 }
