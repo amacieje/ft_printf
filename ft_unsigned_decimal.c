@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 11:26:54 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 13:10:31 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:58:19 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int				ft_precision_zero(int width, t_flags *flags,
 	int					printed;
 
 	i = wholespec->precision;
-//	free(wholespec);
+	free(wholespec);
 	i = 0;
 	printed = 0;
 	if (flags->sharp > 0)
@@ -31,10 +31,11 @@ static int				ft_precision_zero(int width, t_flags *flags,
 	}
 	if (flags->sharp > 0)
 	{
+		free(flags);
 		write(1, "0", 1);
 		return (printed + 1);
 	}
-//	free(flags);
+	free(flags);
 	return (width);
 }
 
