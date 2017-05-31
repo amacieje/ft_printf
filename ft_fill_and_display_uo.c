@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 17:16:59 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 16:08:19 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 16:09:20 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*ft_right_align(char *output, char *li, t_flags *flags,
 	{
 		if (wholespec->precision > lilenght)
 			i = ft_strlen(output) - wholespec->precision - 1;
-		i++;
+//		i++;
 		while (i > 0)
 			output[--i] = ' ';
 	}
