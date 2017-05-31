@@ -6,13 +6,13 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 11:25:25 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 14:14:46 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:15:46 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-/*static char				*ft_newformat(int *k, char *width)
+static char				*ft_newformat(int *k, char *width)
 {
 	char				*newformat;
 	int					j;
@@ -54,7 +54,7 @@ static int				ft_print_pointer(unsigned long long li,
 //	free(wholespec);
 //	free(flags);
 	return (k);
-}*/
+}
 
 static int				ft_precision_zero(int width, char c)
 {
@@ -96,8 +96,8 @@ int						ft_unsigned_hexa(unsigned long long li,
 		exit(-1);
 	if (precision == -3 && li == 0)
 		return (ft_precision_zero(width, format[j]));
-//	if (format[j] == 'p')
-//		return (ft_print_pointer(li, wholespec, flags));
+	if (format[j] == 'p')
+		return (ft_print_pointer(li, wholespec, flags));
 	if ((printed = ft_cast_uh((uintmax_t)li, flags, wholespec, format)) < 0)
 		exit(-1);
 //	free(flags);
