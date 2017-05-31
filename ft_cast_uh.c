@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 11:27:42 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 13:37:14 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 13:38:31 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	ft_max_lenght(int lilenght, int width, int precision)
 {
 	int		max;
 
+	write(1, "U", 1);
 	if (width >= precision)
 		max = width;
 	else
