@@ -6,7 +6,7 @@
 /*   By: amacieje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 14:07:40 by amacieje          #+#    #+#             */
-/*   Updated: 2017/05/31 14:31:19 by amacieje         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:49:05 by amacieje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int			ft_cast_uo(uintmax_t li, t_flags *flags,
 	output[printed] = '\0';
 	wholespec->j = printed;
 	ft_fill_and_display_uo(output, ft_uitoa_base(li, 8), flags, wholespec);
+	free(output);
 	return (printed);
 }
