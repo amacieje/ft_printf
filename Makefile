@@ -6,7 +6,7 @@
 #    By: amacieje <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 15:13:06 by amacieje          #+#    #+#              #
-#    Updated: 2017/05/30 11:59:49 by amacieje         ###   ########.fr        #
+#    Updated: 2017/06/01 13:00:00 by amacieje         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,3 +39,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY : all clean fclean re
